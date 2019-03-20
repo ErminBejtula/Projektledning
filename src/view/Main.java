@@ -15,8 +15,8 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Projektledning");
-			primaryStage.setMinHeight(500);
-			primaryStage.setMinWidth(700);
+			primaryStage.setMinHeight(535);
+			primaryStage.setMinWidth(715);
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
