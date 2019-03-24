@@ -13,4 +13,7 @@ public class AgentRegister {
 
 	private ArrayList<Agent> agentReg = new ArrayList<Agent>();
 
+	public void addAgent(Agent s) {
+		agentReg.add(s);
+	}
 }

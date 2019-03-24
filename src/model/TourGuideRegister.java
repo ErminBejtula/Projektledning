@@ -12,4 +12,7 @@ public class TourGuideRegister {
 	public void setTourGuideReg(ArrayList<TourGuide> tourGuideReg) {
 		this.tourGuideReg = tourGuideReg;
 	}
+	public void addTourGuide(TourGuide s) {
+		tourGuideReg.add(s);
+	}
 }
