@@ -2,11 +2,24 @@ package model;
 
 public class Employee {
 	
+	String employeeID;
 	String phoneNumber;
 	String name;
-	int age;
+	String age;
 	String mail;
 	String language;
+	String destination;
+	private static int employeeNumber = 10000;
+	
+	public void generateEmployeeID() {
+		if (employeeNumber < 100000) {
+			this.employeeID = ("E" + employeeNumber);
+			employeeNumber++;
+		}
+	}
+	public String getEmployeeID() {
+		return employeeID;
+	}
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -20,10 +33,10 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public String getMail() {
@@ -38,5 +51,10 @@ public class Employee {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-
+	public String getDestination() {
+		return destination;
+	}
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
 }

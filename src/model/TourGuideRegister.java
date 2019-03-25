@@ -15,4 +15,12 @@ public class TourGuideRegister {
 	public void addTourGuide(TourGuide s) {
 		tourGuideReg.add(s);
 	}
+	public TourGuide readTourGuide(String employeeID) {
+		for (TourGuide tmp : tourGuideReg) {
+			if (tmp.getEmployeeID().equals(employeeID)) {
+				return tmp;
+			}
+		}
+		return null;
+	}
 }

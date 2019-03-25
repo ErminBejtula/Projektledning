@@ -5,6 +5,12 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import model.Agent;
+import model.AgentRegister;
+import model.Student;
+import model.TourGuide;
+import model.TourGuideRegister;
+import utilities.Validator;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
@@ -12,36 +18,36 @@ import com.jfoenix.controls.JFXTextArea;
 
 public class Controller {
 	
+	AgentRegister agentReg = new AgentRegister();
+	TourGuideRegister tourGuideReg = new TourGuideRegister();
+	
 	public void hideAll() {
 		ancStart.setVisible(false);
-		ancBrazil.setVisible(false);
-		ancCuba.setVisible(false);
-		ancDominicanRepublic.setVisible(false);
-		ancTrinidadAndTobago.setVisible(false);
+		ancAdd.setVisible(false);
+		ancUpdate.setVisible(false);
+		ancFind.setVisible(false);
 	}
 	
 ///////////////////////// START MENU ////////////////////////////
 	
 	@FXML
-	private Label lblDestinationMenu;
+	private Label lblAgentAndTourGuideMenu;
 	@FXML
 	private AnchorPane ancMenu;
 	@FXML
-	private AnchorPane ancSeparatorMenu;
+	private AnchorPane ancSeparatorVerticalMenu;
+	@FXML
+	private AnchorPane ancSeparatorHorizontalMenu;
 	@FXML
 	private ImageView imgPlaneMenu;
 	@FXML
-	private ImageView imgDestinationMenu;
-	@FXML
 	private ImageView imgPalmMenu;
 	@FXML
-	private JFXButton btnBrazil;
+	private JFXButton btnUpdateMenu;
 	@FXML
-	private JFXButton btnCuba;
+	private JFXButton btnAddMenu;
 	@FXML
-	private JFXButton btnDominicanRepublic;
-	@FXML
-	private JFXButton btnTrinidadAndTobago;
+	private JFXButton btnFindMenu;
 	@FXML
 	private JFXButton btnDansresorAB;
 	
@@ -58,104 +64,271 @@ public class Controller {
 	@FXML
 	private Label lblStartStart;
 	@FXML
-	private Label lblChooseYourLocationStart;
-	@FXML
 	private ImageView imgPalm;
 
-//////////////////////// START BRAZIL //////////////////////////////
+//////////////////////// START ADD //////////////////////////////
 	
-	public void btnBrazil_Click(ActionEvent event) {
+	public void btnAddMenu_Click(ActionEvent event) {
 		hideAll();
-		ancBrazil.setVisible(true);
+		ancAdd.setVisible(true);
+	}
+	public void btnAddAgent_Click(ActionEvent event) {
+		String name = txtNameAgentAdd.getText();
+		String age = txtAgeAgentAdd.getText();
+		String mail  = txtEMailAgentAdd.getText();
+		String language = txtLanguageAgentAdd.getText();
+		String destination = txtDestinationAgentAdd.getText();
+		String phoneNumber = txtTelephoneNumberAgentAdd.getText();
+		Agent tmpAgent = new Agent();
+		tmpAgent.setName(name);
+		tmpAgent.setMail(mail);
+		tmpAgent.setAge(age);
+		tmpAgent.setLanguage(language);
+		tmpAgent.setDestination(destination);
+		tmpAgent.setPhoneNumber(phoneNumber);
+		tmpAgent.generateEmployeeID();
+		txtEmployeeIDAgentAdd.setText(tmpAgent.getEmployeeID());
+		agentReg.addAgent(tmpAgent);
+	}
+	
+	public void btnAddTourGuide_Click(ActionEvent event) {
+		String name = txtNameTourGuideAdd.getText();
+		String age = txtAgeTourGuideAdd.getText();
+		String mail  = txtEMailTourGuideAdd.getText();
+		String language = txtLanguageTourGuideAdd.getText();
+		String destination = txtDestinationTourGuideAdd.getText();
+		String phoneNumber = txtTelephoneNumberTourGuideAdd.getText();
+		TourGuide tmpTourGuide = new TourGuide();
+		tmpTourGuide.setName(name);
+		tmpTourGuide.setMail(mail);
+		tmpTourGuide.setAge(age);
+		tmpTourGuide.setLanguage(language);
+		tmpTourGuide.setDestination(destination);
+		tmpTourGuide.setPhoneNumber(phoneNumber);
+		tmpTourGuide.generateEmployeeID();
+		txtEmployeeIDTourGuideAdd.setText(tmpTourGuide.getEmployeeID());
+		tourGuideReg.addTourGuide(tmpTourGuide);
 	}
 	
 	@FXML
-	private AnchorPane ancBrazil;
+	private AnchorPane ancAdd;
 	@FXML
-	private Label lblBrazilBrazil;
+	private Label lblAddAdd;
 	@FXML
-	private JFXTextArea areaAgentsBrazil;
+	private Label lblAgentAdd;
 	@FXML
-	private JFXTextArea areaTourGuidesBrazil;
+	private Label lblTourGuideAdd;
 	@FXML
-	private Label lblAgentsBrazil;
+	private JFXTextField txtEmployeeIDAgentAdd;
 	@FXML
-	private Label lblTourGuidesBrazil;
+	private JFXTextField txtNameAgentAdd;
 	@FXML
-	private AnchorPane ancSeparatorBrazil;
+	private JFXTextField txtAgeAgentAdd;
 	@FXML
-	private ImageView imgPalmBrazil;
+	private JFXTextField txtEMailAgentAdd;
+	@FXML
+	private JFXTextField txtTelephoneNumberAgentAdd;
+	@FXML
+	private JFXTextField txtLanguageAgentAdd;
+	@FXML
+	private JFXTextField txtDestinationAgentAdd;
+	@FXML
+	private JFXTextField txtEmployeeIDTourGuideAdd;
+	@FXML
+	private JFXTextField txtNameTourGuideAdd;
+	@FXML
+	private JFXTextField txtAgeTourGuideAdd;
+	@FXML
+	private JFXTextField txtEMailTourGuideAdd;
+	@FXML
+	private JFXTextField txtTelephoneNumberTourGuideAdd;
+	@FXML
+	private JFXTextField txtLanguageTourGuideAdd;
+	@FXML
+	private JFXTextField txtDestinationTourGuideAdd;
+	@FXML
+	private AnchorPane ancSeparatorAdd;
+	@FXML
+	private ImageView imgPalmAdd;
+	@FXML
+	private JFXButton btnAddAgentAdd;
+	@FXML 
+	private JFXButton btnAddTourGuideAdd;
 	
-////////////////////////// START CUBA ///////////////////////////////
+////////////////////////// START UPDATE ///////////////////////////////
 	
-	public void btnCuba_Click(ActionEvent event) {
+	public void btnUpdateMenu_Click(ActionEvent event) {
 		hideAll();
-		ancCuba.setVisible(true);
+		ancUpdate.setVisible(true);
+	}
+	public void btnFindAgent_Click(ActionEvent event) {
+		String employeeID = txtEmployeeIDAgentUpdate.getText();
+		int i = 0;
+		for (Agent tmpAgent : agentReg.getAgentReg()) {
+			if (!tmpAgent.getEmployeeID().equals(employeeID)) {
+				i++;
+			}
+		}
+		if (i == agentReg.getAgentReg().size()) {
+			employeeID = null;
+		}
+		for (Agent tmpAgent : agentReg.getAgentReg()) {
+			if (tmpAgent.getEmployeeID().equals(employeeID)) {
+				txtNameAgentUpdate.setText(tmpAgent.getName());
+				txtAgeAgentUpdate.setText(tmpAgent.getAge());
+				txtEMailAgentUpdate.setText(tmpAgent.getMail());
+				txtTelephoneNumberAgentUpdate.setText(tmpAgent.getPhoneNumber());
+				txtLanguageAgentUpdate.setText(tmpAgent.getLanguage());
+				txtDestinationAgentUpdate.setText(tmpAgent.getDestination());
+	}
+		}
+			}
+	
+	public void btnFindTourGuide_Click(ActionEvent event) {
+		String employeeID = txtEmployeeIDTourGuideUpdate.getText();
+		int i = 0;
+		for (TourGuide tmpTourGuide : tourGuideReg.getTourGuideReg()) {
+			if (!tmpTourGuide.getEmployeeID().equals(employeeID)) {
+				i++;
+			}
+			if (i == tourGuideReg.getTourGuideReg().size()) {
+				employeeID = null;
+			}
+			for (Agent tmpTourGuide : tourGuideReg.getTourGuideReg()) {
+				if (tmpTourGuide.getEmployeeID().equals(employeeID)) {
+					txtNameTourGuideUpdate.setText(tmpTourGuide.getName());
+					txtAgeTourGuideUpdate.setText(tmpTourGuide.getAge());
+					txtEMailTourGuideUpdate.setText(tmpTourGuide.getMail());
+					txtTelephoneNumberTourGuideUpdate.setText(tmpTourGuide.getPhoneNumber());
+					txtLanguageTourGuideUpdate.setText(tmpTourGuide.getLanguage());
+					txtDestinationTourGuideUpdate.setText(tmpTourGuide.getDestination());
+				}
+			}
+		}
+	}
+	public void btnUpdateAgent_Click(ActionEvent event) {
+		String employeeID = txtEmployeeIDAgentUpdate.getText();
+		String name = txtNameAgentUpdate.getText();
+		String age = txtAgeAgentUpdate.getText();
+		String mail = txtEMailAgentUpdate.getText();
+		String phoneNumber = txtTelephoneNumberAgentUpdate.getText();
+		String language = txtLanguageAgentUpdate.getText();
+		String destination = txtDestinationAgentUpdate.getText();
+
+		for (Agent tmpAgent : agentReg.getAgentReg()) {
+			if (tmpAgent.getEmployeeID().equals(employeeID)) {
+				tmpAgent.setName(txtNameAgentUpdate.getText());
+				tmpAgent.setAge(txtAgeAgentUpdate.getText());
+				tmpAgent.setMail(txtEMailAgentUpdate.getText());
+				tmpAgent.setPhoneNumber(txtTelephoneNumberAgentUpdate.getText());
+				tmpAgent.setLanguage(txtLanguageAgentUpdate.getText());
+				tmpAgent.setDestination(txtDestinationAgentUpdate.getText());
+			}
+		}
+	}
+	public void btnUpdateTourGuide_Click(ActionEvent event) {
+		String employeeID = txtEmployeeIDTourGuideUpdate.getText();
+		String name = txtNameTourGuideUpdate.getText();
+		String age = txtAgeTourGuideUpdate.getText();
+		String mail = txtEMailTourGuideUpdate.getText();
+		String phoneNumber = txtTelephoneNumberTourGuideUpdate.getText();
+		String language = txtLanguageTourGuideUpdate.getText();
+		String destination = txtDestinationTourGuideUpdate.getText();
+
+		for (TourGuide tmpTourGuide : tourGuideReg.getTourGuideReg()) {
+			if (tmpTourGuide.getEmployeeID().equals(employeeID)) {
+				tmpTourGuide.setName(txtNameTourGuideUpdate.getText());
+				tmpTourGuide.setAge(txtAgeTourGuideUpdate.getText());
+				tmpTourGuide.setMail(txtEMailTourGuideUpdate.getText());
+				tmpTourGuide.setPhoneNumber(txtTelephoneNumberTourGuideUpdate.getText());
+				tmpTourGuide.setLanguage(txtLanguageTourGuideUpdate.getText());
+				tmpTourGuide.setDestination(txtDestinationTourGuideUpdate.getText());
+			}
+		}
 	}
 	
 	@FXML
-	private AnchorPane ancCuba;
+	private AnchorPane ancUpdate;
 	@FXML
-	private Label lblCubaCuba;
+	private Label lblUpdateUpdate;
 	@FXML
-	private JFXTextArea areaAgentsCuba;
+	private Label lblAgentsUpdate;
 	@FXML
-	private JFXTextArea areaTourGuidesCuba;
+	private Label lblTourGuidesUpdate;
 	@FXML
-	private Label lblAgentsCuba;
+	private AnchorPane ancSeparatorUpdate;
 	@FXML
-	private Label lblTourGuidesCuba;
+	private ImageView imgPalmUpdate;
 	@FXML
-	private AnchorPane ancSeparatorCuba;
+	private JFXButton btnFindAgentUpdate;
 	@FXML
-	private ImageView imgPalmCuba;
+	private JFXButton btnUpdateAgentUpdate;
+	@FXML
+	private JFXButton btnFindTourGuideUpdate;
+	@FXML
+	private JFXButton btnUpdateTourGuideUpdate;
+	@FXML
+	private JFXTextField txtEmployeeIDAgentUpdate;
+	@FXML
+	private JFXTextField txtNameAgentUpdate;
+	@FXML
+	private JFXTextField txtAgeAgentUpdate;
+	@FXML
+	private JFXTextField txtEMailAgentUpdate;
+	@FXML
+	private JFXTextField txtTelephoneNumberAgentUpdate;
+	@FXML
+	private JFXTextField txtLanguageAgentUpdate;
+	@FXML
+	private JFXTextField txtDestinationAgentUpdate;
+	@FXML
+	private JFXTextField txtEmployeeIDTourGuideUpdate;
+	@FXML
+	private JFXTextField txtNameTourGuideUpdate;
+	@FXML
+	private JFXTextField txtAgeTourGuideUpdate;
+	@FXML
+	private JFXTextField txtEMailTourGuideUpdate;
+	@FXML
+	private JFXTextField txtTelephoneNumberTourGuideUpdate;
+	@FXML
+	private JFXTextField txtLanguageTourGuideUpdate;
+	@FXML
+	private JFXTextField txtDestinationTourGuideUpdate;
 	
-//////////////////////// START DOMINICAN REPUBLIC /////////////////////
+///////////////////////////START FIND//////////////////////////////
 	
-	public void btnDominicanRepublic_Click(ActionEvent event) {
-		hideAll();
-		ancDominicanRepublic.setVisible(true);
+	public void btnFindAllAgentsFind_Click(ActionEvent event) {
+		areaAgentsFind
+	}
+	
+	public void btnFindAllTourGuides_Click(ActionEvent event) {
+		areaTourGuidesFind
 	}
 	
 	@FXML
-	private AnchorPane ancDominicanRepublic;
+	private AnchorPane ancFind;
 	@FXML
-	private Label lblDominicanRepublic;
+	private AnchorPane ancSeparatorFind;
 	@FXML
-	private JFXTextArea areaAgentsDominicanRepublic;
+	private Label lblFindFind;
 	@FXML
-	private JFXTextArea areaTourGuidesDominicanRepublic;
+	private ImageView imgPalmFind;
 	@FXML
-	private Label lblAgentsDominicanRepublic;
+	private Label lblAgentsFind;
 	@FXML
-	private Label lblTourGuidesDominicanRepublic;
+	private Label lblTourGuidesFind;
 	@FXML
-	private AnchorPane ancSeparatorDominicanRepublic;
+	private JFXTextArea areaAgentsFind;
 	@FXML
-	private ImageView imgPalmDominicanRepublic;
+	private JFXTextArea areaTourGuidesFind;
+	@FXML
+	private JFXButton btnFindAllAgentsFind;
+	@FXML
+	private JFXButton btnFindAllTourGuidesFind;
 	
-/////////////////////// START TRINIDAD AND TOBAGO //////////////////////
+//////////////////////////////////////////////////////////////////
 	
-	public void btnTrinidadAndTobago_Click(ActionEvent event) {
-		hideAll();
-		ancTrinidadAndTobago.setVisible(true);
-	}
 	
-	@FXML
-	private AnchorPane ancTrinidadAndTobago;
-	@FXML
-	private Label lblTrinidadAndTobago;
-	@FXML
-	private JFXTextArea areaAgentsTrinidadAndTobago;
-	@FXML
-	private JFXTextArea areaTourGuidesTrinidadAndTobago;
-	@FXML
-	private Label lblAgentsTrinidadAndTobago;
-	@FXML
-	private Label lblTourGuidesTrinidadAndTobago;
-	@FXML
-	private AnchorPane ancSeparatorTrinidadAndTobago;
-	@FXML
-	private ImageView imgPalmTrinidadAndTobago;
-	
+
 }
