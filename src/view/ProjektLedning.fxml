@@ -28,7 +28,7 @@
                   <Image url="@../../../../Downloads/airplane-11-512.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnDansresorAB" layoutX="4.0" layoutY="15.0" text="DANSRESOR AB">
+            <JFXButton fx:id="btnDansresorAB" layoutX="4.0" layoutY="15.0" onAction="#btnDansresorAB_Click" text="DANSRESOR AB">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
