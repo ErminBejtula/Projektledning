@@ -25,4 +25,12 @@ public class AgentRegister {
 		}
 		return null;
 	}
+//	public Agent readAllAgents() {
+//		for (Agent tmp : agentReg) {
+//			areaAgentsFind.setText("Employee ID: " + tmp.getEmployeeID() + "\n" + "Name: " 
+//			+ tmp.getName() + "\n" + "Age: " + tmp.getAge() + "\n" + "E-mail: " + tmp.getMail()
+//			+ "\n" + "Phone number: " + tmp.getPhoneNumber() + "\n" + "Languages: " 
+//			+ tmp.getLanguage() + "\n" + "Destination: " + tmp.getDestination());
+//		}
+//	}
 }

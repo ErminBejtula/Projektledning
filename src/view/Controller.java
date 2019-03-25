@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -7,14 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import model.Agent;
 import model.AgentRegister;
-import model.Student;
+
 import model.TourGuide;
 import model.TourGuideRegister;
-import utilities.Validator;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 
 public class Controller {
 	
@@ -194,8 +195,8 @@ public class Controller {
 			if (i == tourGuideReg.getTourGuideReg().size()) {
 				employeeID = null;
 			}
-			for (Agent tmpTourGuide : tourGuideReg.getTourGuideReg()) {
-				if (tmpTourGuide.getEmployeeID().equals(employeeID)) {
+			for (TourGuide tmpTourGuide2 : tourGuideReg.getTourGuideReg()) {
+				if (tmpTourGuide2.getEmployeeID().equals(employeeID)) {
 					txtNameTourGuideUpdate.setText(tmpTourGuide.getName());
 					txtAgeTourGuideUpdate.setText(tmpTourGuide.getAge());
 					txtEMailTourGuideUpdate.setText(tmpTourGuide.getMail());
@@ -298,12 +299,26 @@ public class Controller {
 	
 ///////////////////////////START FIND//////////////////////////////
 	
+public void btnFindMenu_Click(ActionEvent event) {
+	hideAll();
+	ancFind.setVisible(true);
+}
 	public void btnFindAllAgentsFind_Click(ActionEvent event) {
-		areaAgentsFind
+	for (Agent tmp : agentReg.getAgentReg()) {
+			areaAgentsFind.setText("Employee ID: " + tmp.getEmployeeID() + "\n" + "Name: " 
+			+ tmp.getName() + "\n" + "Age: " + tmp.getAge() + "\n" + "E-mail: " + tmp.getMail()
+			+ "\n" + "Phone number: " + tmp.getPhoneNumber() + "\n" + "Languages: " 
+			+ tmp.getLanguage() + "\n" + "Destination: " + tmp.getDestination());
+		}
 	}
 	
 	public void btnFindAllTourGuides_Click(ActionEvent event) {
-		areaTourGuidesFind
+		for (TourGuide tmp : tourGuideReg.getTourGuideReg()) {
+		areaTourGuidesFind.setText("Employee ID: " + tmp.getEmployeeID() + "\n" + "Name: " 
+		+ tmp.getName() + "\n" + "Age: " + tmp.getAge() + "\n" + "E-mail: " + tmp.getMail()
+		+ "\n" + "Phone number: " + tmp.getPhoneNumber() + "\n" + "Languages: " 
+		+ tmp.getLanguage() + "\n" + "Destination: " + tmp.getDestination());
+		}
 	}
 	
 	@FXML
