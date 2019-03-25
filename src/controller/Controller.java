@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -10,7 +11,6 @@ import model.AgentRegister;
 
 import model.TourGuide;
 import model.TourGuideRegister;
-
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
@@ -304,21 +304,30 @@ public void btnFindMenu_Click(ActionEvent event) {
 	ancFind.setVisible(true);
 }
 	public void btnFindAllAgentsFind_Click(ActionEvent event) {
-	for (Agent tmp : agentReg.getAgentReg()) {
-			areaAgentsFind.setText("Employee ID: " + tmp.getEmployeeID() + "\n" + "Name: " 
+
+		String all = "";
+		for (Agent tmp : agentReg.getAgentReg()) {
+			String text = ("Employee ID: " + tmp.getEmployeeID() + "\n" + "Name: " 
 			+ tmp.getName() + "\n" + "Age: " + tmp.getAge() + "\n" + "E-mail: " + tmp.getMail()
 			+ "\n" + "Phone number: " + tmp.getPhoneNumber() + "\n" + "Languages: " 
 			+ tmp.getLanguage() + "\n" + "Destination: " + tmp.getDestination());
+			
+			all += text + "\n" + "\n";
 		}
+		areaAgentsFind.setText(all);
 	}
 	
 	public void btnFindAllTourGuides_Click(ActionEvent event) {
+		String all2 = "";
 		for (TourGuide tmp : tourGuideReg.getTourGuideReg()) {
-		areaTourGuidesFind.setText("Employee ID: " + tmp.getEmployeeID() + "\n" + "Name: " 
-		+ tmp.getName() + "\n" + "Age: " + tmp.getAge() + "\n" + "E-mail: " + tmp.getMail()
-		+ "\n" + "Phone number: " + tmp.getPhoneNumber() + "\n" + "Languages: " 
-		+ tmp.getLanguage() + "\n" + "Destination: " + tmp.getDestination());
+			String text2 = ("Employee ID: " + tmp.getEmployeeID() + "\n" + "Name: " 
+			+ tmp.getName() + "\n" + "Age: " + tmp.getAge() + "\n" + "E-mail: " + tmp.getMail()
+			+ "\n" + "Phone number: " + tmp.getPhoneNumber() + "\n" + "Languages: " 
+			+ tmp.getLanguage() + "\n" + "Destination: " + tmp.getDestination());
+			
+			all2 += text2 + "\n" + "\n";
 		}
+		areaTourGuidesFind.setText(all2);
 	}
 	
 	@FXML
